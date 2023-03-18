@@ -52,14 +52,14 @@ while (seleccionoAuto === false) {
 }
 
 //Preguntamos el enganche en % 
-const enganchePorcentaje = parseInt(prompt('Ingresa un número del 1 al 99 representando el porcentaje del enganche \n Ejemplo: 12, 24, 36, 48, 72'))
+let enganchePorcentaje = parseInt(prompt('Ingresa un número del 1 al 99 representando el porcentaje del enganche \n Ejemplo: 12, 24, 36, 48, 72'))
 
 if (enganchePorcentaje > 99 || enganchePorcentaje < 0) {
     enganchePorcentaje = parseInt(prompt('Ingresa solo un número del 1 al 99 representando el porcentaje del enganche \n Ejemplo: 12, 24, 36, 48, 72'))
 }
 
 //Preguntamos las mensualidades en meses
-const mensualidades = parseInt(prompt('Ingresa un número del 1 al 99 representando el plazo del pago en meses \n Ejemplo: 12, 24, 36, 48, 72'))
+let mensualidades = parseInt(prompt('Ingresa un número del 1 al 99 representando el plazo del pago en meses \n Ejemplo: 12, 24, 36, 48, 72'))
 
 if (mensualidades > 99 || mensualidades < 0) {
     mensualidades = parseInt(prompt('Ingresa solo un número del 1 al 99 representando el plazo del pago en meses'))
