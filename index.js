@@ -17,7 +17,7 @@ const crv = new Auto(4,'CRV',714900,12)
 const pilot = new Auto(5,'Pilot',1029900,9)
 const aveo = new Auto(6,'Aveo',255200,16)
 
-let autoseleccionado = parseInt(prompt('Selecciona el número del automóvil deseado: \n 1) City $363,900 \n 2) Civic $545,900 \n 3) Accord $7799,900 \n 4) CRV $714,900 \n 5) Pilot $1029,900 \n 6) Aveo $255,200'));
+let autoSeleccionado = parseInt(prompt('Selecciona el número del automóvil deseado: \n 1) City $363,900 \n 2) Civic $545,900 \n 3) Accord $7799,900 \n 4) CRV $714,900 \n 5) Pilot $1029,900 \n 6) Aveo $255,200'));
 
 
 //Verificamos el auto
@@ -26,36 +26,36 @@ let seleccionoAuto = false
 let infodelAuto
 
 while (seleccionoAuto === false) {
-    if (autoseleccionado === 1) {
+    if (autoSeleccionado === 1) {
         seleccionoAuto = true
         infodelAuto = city
-    } else if (autoseleccionado === 2){
+    } else if (autoSeleccionado === 2){
         seleccionoAuto = true
         infodelAuto = civic
-    } else if (autoseleccionado === 3){
+    } else if (autoSeleccionado === 3){
         seleccionoAuto = true
         infodelAuto = accord
-    } else if (autoseleccionado === 4){
+    } else if (autoSeleccionado === 4){
         seleccionoAuto = true
         infodelAuto = crv
-    } else if (autoseleccionado === 5){
+    } else if (autoSeleccionado === 5){
         seleccionoAuto = true
         infodelAuto = pilot
-    } else if (autoseleccionado === 6){
+    } else if (autoSeleccionado === 6){
         seleccionoAuto = true
         infodelAuto = aveo
     } else {
-        autoseleccionado = parseInt(prompt('Selecciona solo el NÚMERO del automóvil deseado: \n 1) City $363,900 \n 2) Civic $545,900 \n 3) Accord $7799,900 \n 4) CRV $714,900 \n 5) Pilot $1029,900 \n 6) Aveo $255,200'));
+        autoSeleccionado = parseInt(prompt('Selecciona solo el NÚMERO del automóvil deseado: \n 1) City $363,900 \n 2) Civic $545,900 \n 3) Accord $7799,900 \n 4) CRV $714,900 \n 5) Pilot $1029,900 \n 6) Aveo $255,200'));
 
     }
     
 }
 
 //Preguntamos el enganche en % 
-const engancheporcentaje = parseInt(prompt('Ingresa un número del 1 al 99 representando el porcentaje del enganche \n Ejemplo: 12, 24, 36, 48, 72'))
+const enganchePorcentaje = parseInt(prompt('Ingresa un número del 1 al 99 representando el porcentaje del enganche \n Ejemplo: 12, 24, 36, 48, 72'))
 
-if (engancheporcentaje > 99 || engancheporcentaje < 0) {
-    engancheporcentaje = parseInt(prompt('Ingresa solo un número del 1 al 99 representando el porcentaje del enganche \n Ejemplo: 12, 24, 36, 48, 72'))
+if (enganchePorcentaje > 99 || enganchePorcentaje < 0) {
+    enganchePorcentaje = parseInt(prompt('Ingresa solo un número del 1 al 99 representando el porcentaje del enganche \n Ejemplo: 12, 24, 36, 48, 72'))
 }
 
 //Preguntamos las mensualidades en meses
@@ -66,7 +66,16 @@ if (mensualidades > 99 || mensualidades < 0) {
 }
 
 //convertimos el enganche en cifra porque esta en porcentaje
-const enganche = (engancheporcentaje*infodelAuto.costo)/100
+
+
+function enganchefuncion(ePorcentaje,iAuto) {
+    const calculoEnganche = (ePorcentaje*iAuto)/100
+return calculoEnganche
+}
+
+const enganche = enganchefuncion(enganchePorcentaje,infodelAuto.costo)
+console.log('Enganche: '+enganche)
+
 //Calculamos el crédito al costo del auto menos el enganche
 const credito = infodelAuto.costo-enganche
 
@@ -91,12 +100,19 @@ const t3 = 1-r
 const amortizacion = interes-t3
 //calculamos el impuesto del interes en México es del 16%
 const impuesto = interes*0.16
-//Calculamos la mensualidad sumando: amortización, interes, impuesto
-const mensualidadtotal = amortizacion+interes+impuesto
+//Calculamos la mensualidad sumando: amortización, interes, impuesto usando una funcion
 
-console.log(mensualidadtotal)
+function mensualidadTotal(amortizacion,interes,impuesto) {
+    const totalMensual = amortizacion+interes+impuesto
+    return totalMensual 
+}
+// llamamos a la funcion
+const total = mensualidadTotal(amortizacion,interes,impuesto)
+
+// Imprimimos resultado de la funcion
+ console.log('Mensualidad Total: '+total)
 
 // Mostramos al cliente la mensualidad total a pagar
-alert(`El automóvil seleccionado es: ${infodelAuto.modelo} \n Tú mensualidad seria: $${mensualidadtotal.toFixed(2)} MXN por ${mensualidades} mensualidades`)
+alert(`El automóvil seleccionado es: ${infodelAuto.modelo} \n Tú mensualidad seria: ${total.toFixed(2)} MXN por ${mensualidades} mensualidades`)
 
 
